@@ -6,3 +6,4 @@ Learning by doing. samples for proof of concepts.
 * [LinearLayout Example](https://github.com/pratik98/Android-Demos/tree/master/LinearLayoutCode)
 * [FrameLayout Example](https://github.com/pratik98/Android-Demos/tree/master/FrameLayoutTest)
 * [RelativeLayout Example](https://github.com/pratik98/Android-Demos/tree/master/RelativeLayoutCode)
+* [CustomFont Example](https://github.com/pratik98/Android-Demos/tree/master/CustomFont)
