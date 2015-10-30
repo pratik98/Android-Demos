@@ -8,3 +8,4 @@ Learning by doing. samples for proof of concepts.
 * [RelativeLayout Example](https://github.com/pratik98/Android-Demos/tree/master/RelativeLayoutCode)
 * [CustomFont Example](https://github.com/pratik98/Android-Demos/tree/master/CustomFont)
 * [Calculator Layout Example] (https://github.com/pratik98/Android-Demos/tree/master/Calculator)
+* [CustomToast Example](https://github.com/pratik98/Android-Demos/tree/master/CustomToast)
