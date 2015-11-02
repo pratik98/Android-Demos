@@ -1,5 +1,6 @@
 # Android-Demos
 Learning by doing. samples for proof of concepts.
+Example Apps from codepath.com, Slidenerd as well as own experiments.
 -----------------------------------------------------------------------------------------------
 * [Activity Lifecycle](https://github.com/pratik98/Android-Demos/tree/master/ActivityLifeCycle)
 * [Orientation Test](https://github.com/pratik98/Android-Demos/tree/master/OrientationTest)
@@ -9,3 +10,4 @@ Learning by doing. samples for proof of concepts.
 * [CustomFont Example](https://github.com/pratik98/Android-Demos/tree/master/CustomFont)
 * [Calculator Layout Example] (https://github.com/pratik98/Android-Demos/tree/master/Calculator)
 * [CustomToast Example](https://github.com/pratik98/Android-Demos/tree/master/CustomToast)
+* [ListActivity Example] (https://github.com/pratik98/Android-Demos/tree/master/ListActivityTest)
