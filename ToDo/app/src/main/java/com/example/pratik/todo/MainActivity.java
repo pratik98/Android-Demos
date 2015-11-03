@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.apache.commons.io.FileUtils;
 
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         lvItems = (ListView)findViewById(R.id.lvitem);
         //items = new ArrayList<>();
         readItems();
-        itemsAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,items);
+        itemsAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,items);
         lvItems.setAdapter(itemsAdapter);
         //items.add("To do");
        // items.add("Wish list");
@@ -83,7 +84,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void onAddItem(View view) {
         EditText item = (EditText)findViewById(R.id.etNewitem);
+        if(!item.getText().toString().isEmpty())
         itemsAdapter.add(item.getText().toString());
+        else {
+            Toast.makeText(this, "Nothing is not valid To Do item", Toast.LENGTH_SHORT).show();
+        }
         item.setText("");
         writeItems();
     }

@@ -11,3 +11,4 @@ Example Apps from codepath.com, Slidenerd as well as own experiments.
 * [Calculator Layout Example] (https://github.com/pratik98/Android-Demos/tree/master/Calculator)
 * [CustomToast Example](https://github.com/pratik98/Android-Demos/tree/master/CustomToast)
 * [ListActivity Example] (https://github.com/pratik98/Android-Demos/tree/master/ListActivityTest)
+* [Simple ToDo app] (https://github.com/pratik98/Android-Demos/tree/master/ToDo)
