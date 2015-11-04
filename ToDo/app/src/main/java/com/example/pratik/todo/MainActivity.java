@@ -3,6 +3,7 @@ package com.example.pratik.todo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,10 +13,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import org.apache.commons.io.FileUtils;
-
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> items;
     ArrayAdapter<String> itemsAdapter;
     ListView lvItems;
+    TodoDBHelper databaseHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,14 +30,14 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         lvItems = (ListView)findViewById(R.id.lvitem);
-        //items = new ArrayList<>();
+        // Get singleton instance of database
+       databaseHelper = TodoDBHelper.getInstance(this);
+
         readItems();
         itemsAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,items);
         lvItems.setAdapter(itemsAdapter);
-        //items.add("To do");
-       // items.add("Wish list");
-
         setListViewListener();
+
       /*  FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,9 +52,13 @@ public class MainActivity extends AppCompatActivity {
         lvItems.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Item itemobj = new Item();
+                itemobj.text = lvItems.getItemAtPosition(position).toString();
+                databaseHelper.deleteItem(itemobj);
                 items.remove(position);
                 itemsAdapter.notifyDataSetChanged();
-                writeItems();
+               // writeItems();
                 return true;
             }
         });
@@ -85,15 +88,25 @@ public class MainActivity extends AppCompatActivity {
     public void onAddItem(View view) {
         EditText item = (EditText)findViewById(R.id.etNewitem);
         if(!item.getText().toString().isEmpty())
-        itemsAdapter.add(item.getText().toString());
+        {
+            itemsAdapter.add(item.getText().toString());
+            Item itemobj = new Item();
+            itemobj.text = item.getText().toString();
+            databaseHelper.addItem(itemobj);
+            item.setText("");
+        }
+
         else {
             Toast.makeText(this, "Nothing is not valid To Do item", Toast.LENGTH_SHORT).show();
         }
-        item.setText("");
-        writeItems();
+
+
     }
 
     private void readItems() {
+        /*
+        Using files
+        ============
         File filesdir = getFilesDir();
         File todofile = new File(filesdir,"todo.txt");
         try{
@@ -101,11 +114,21 @@ public class MainActivity extends AppCompatActivity {
         }catch (IOException e)
         {
             items = new ArrayList<String>();
+        }*/
+        /*using Database*/
+        for (String item : items = (ArrayList<String>) databaseHelper.getAllItems()) {
+            Log.d("Item",item.toString());
         }
+        ;
+
+
     }
 
     private void writeItems() {
-        File filesdir = getFilesDir();
+      /*
+       using files
+       ===============
+       File filesdir = getFilesDir();
         File todofile = new File(filesdir,"todo.txt");
         try{
            FileUtils.writeLines(todofile,items);
@@ -113,5 +136,7 @@ public class MainActivity extends AppCompatActivity {
         {
             e.printStackTrace();
         }
+        */
+
     }
 }
