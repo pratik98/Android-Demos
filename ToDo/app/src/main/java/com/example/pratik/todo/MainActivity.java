@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 itemobj.text = lvItems.getItemAtPosition(position).toString();
                 databaseHelper.deleteItem(itemobj);
                 items.remove(position);
+                Toast.makeText(getApplicationContext(), "Item removed successfully!", Toast.LENGTH_SHORT).show();
                 itemsAdapter.notifyDataSetChanged();
                // writeItems();
                 return true;
@@ -93,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
             Item itemobj = new Item();
             itemobj.text = item.getText().toString();
             databaseHelper.addItem(itemobj);
+            Toast.makeText(getApplicationContext(), "Item added successfully!", Toast.LENGTH_SHORT).show();
             item.setText("");
         }
 
