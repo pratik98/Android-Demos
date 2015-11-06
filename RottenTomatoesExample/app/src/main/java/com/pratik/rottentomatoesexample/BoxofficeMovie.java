@@ -13,6 +13,7 @@ import java.util.ArrayList;
  *
  */
 public class BoxofficeMovie implements Serializable {
+    private static final long serialVersionUID = 42L;
     private String title;
     private int year;
     private String synopsis;
