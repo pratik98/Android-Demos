@@ -6,18 +6,34 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  */
-public class BoxofficeMovie {
+public class BoxofficeMovie implements Serializable {
     private String title;
     private int year;
     private String synopsis;
     private String posterUrl;
     private int criticsScore;
     private ArrayList<String> castList;
+    private String largePosterUrl;
+    private String criticsConsensus;
+    private int audienceScore;
+
+    public String getLargePosterUrl() {
+        return largePosterUrl;
+    }
+
+    public String getCriticsConsensus() {
+        return criticsConsensus;
+    }
+
+    public int getAudienceScore() {
+        return audienceScore;
+    }
 
     public String getTitle() {
         return title;
@@ -43,6 +59,8 @@ public class BoxofficeMovie {
         return TextUtils.join(", ", castList);
     }
 
+
+
     public static BoxofficeMovie fromJson(JSONObject jsonObject) {
         BoxofficeMovie b = new BoxofficeMovie();
         try {
@@ -58,6 +76,11 @@ public class BoxofficeMovie {
             for (int i = 0; i < abridgedCast.length(); i++) {
                 b.castList.add(abridgedCast.getJSONObject(i).getString("name"));
             }
+            b.largePosterUrl = jsonObject.getJSONObject("posters").getString("detailed");
+            b.criticsConsensus = jsonObject.getString("critics_consensus");
+            b.audienceScore = jsonObject.getJSONObject("ratings").getInt("audience_score");
+
+
         } catch (JSONException e) {
             e.printStackTrace();
             return null;

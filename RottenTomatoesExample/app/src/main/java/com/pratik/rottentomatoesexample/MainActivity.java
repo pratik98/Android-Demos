@@ -1,5 +1,6 @@
 package com.pratik.rottentomatoesexample;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView lvMovies;
     private BoxOfficeMoviesAdapter adapterMovies;
     RottenTomatoesClient client;
+    public static final String MOVIE_DETAIL_KEY = "movie";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +46,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         fetchBoxofficeMovies();
+        setupMovieClickedListener();
+    }
+
+    private void setupMovieClickedListener() {
+        lvMovies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(MainActivity.this,BoxOfficeDetailActivity.class);
+                i.putExtra(MOVIE_DETAIL_KEY,adapterMovies.getItem(position));
+                startActivity(i);
+            }
+        });
     }
 
     private void fetchBoxofficeMovies() {
